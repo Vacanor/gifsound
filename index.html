@@ -20,7 +20,7 @@
 		     var imgs = $("img");
 		     for (img in imgs){
 		     	if ($(imgs[img]).attr('src') == "https://www.reddit.com/static/spreddit1.gif"){
-		     		$(imgs[img]).attr("src", "img/logo.png")
+		     		$(imgs[img]).attr("src", "img/logo.png");
 		     	}
 		     }
 		})
@@ -33,13 +33,16 @@
 			<span class="subtitle">Animated GIFs &nbsp;+&nbsp; Sound from YouTube &nbsp;=&nbsp; Funny Mashups</span>
 		</div>
 	</section>
+	<section id="mashup">
+		
+	</section>
 	<section id="combiner">
-		<form action="">
+		<form ng-submit="combine()">
 			<div class="form">
-				GIF:<input placeholder="URL of an animated GIF." type="url" required id="gif">
-				Sound: <input placeholder="YouTube URL." type="url" required id="sound">
-				Start: <input placeholder="0 Sec." type="text" required class="start-input" id="start">
-				<button class="submit-button" type="submit" value="combine!">COMBINE!</button>
+				GIF:<input placeholder="URL of an animated GIF." type="url" required id="gif" ng-model="gifModel">
+				Sound: <input placeholder="YouTube URL." type="url" required id="sound" ng-model="soundModel">
+				Start: <input placeholder="Seconds" type="text" required class="start-input" id="start" ng-model="timeModel">
+				<button class="submit-button" type="submit">COMBINE!</button>
 			</div>
 		</form>
 	</section>
