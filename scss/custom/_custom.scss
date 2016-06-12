@@ -1,0 +1,116 @@
+body, html {
+	font-family: 'Roboto', sans-serif;
+	height: 100vh;
+	width: 100vw;
+}
+::-moz-selection { background: rgba(38, 50, 56, .8);color: #eceff1; }
+::selection { background: rgba(38, 50, 56, .8);color: #eceff1; }
+a, a:link, a:hover, a:active, a:focus, a:visited {
+	text-decoration: none;
+	color: rgb(96, 125, 139);
+}
+#header {
+	.intro {
+		.title {
+			display: block;
+		    font-size: 30px;
+		    padding: 20px;
+		}
+		.subtitle{
+			display: block;	
+			padding: 10px;
+		}
+	}
+}
+#combiner {
+	width: 100vw;
+	height: 70px;
+	background-color: #263238;
+	margin-top: 25px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	.form {
+		color: #eceff1;
+		line-height: 70px;
+		font-weight: 300;
+		.form-subtitle{
+			display: inline-block;
+			font-size: 11px;
+		}
+	}
+}
+#links {
+	#share-mashup{
+		margin: 25px;
+		font-size: 16px;
+		text-align: center;
+	}
+	.list-tables{
+		.mdl-cell {
+			margin: 5px auto!important;
+		}
+		font-size: 13px;
+		.gifs-from{
+			display: block;
+			padding: 5px;
+		}
+		.table-title {
+			padding: 5px;
+		}
+		.rembeddit {
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			border-color: rgba(69, 90, 100, .5)!important;
+			border-radius: 2px;
+			.reddit-header {
+				background-color: rgba(69, 90, 100, .5)!important;
+				color: rgba(236, 239, 241, 1)!important;
+				.reddit-title{
+					padding-bottom: 4px!important;
+					img {
+						vertical-align: middle;
+					}
+					a {
+						color: rgb(96, 125, 139)!important;
+					}
+				}
+			}
+			.reddit-link-title {
+				color: rgb(96, 125, 139)!important;
+			}
+			.reddit-comment-link{
+				color: rgb(38, 50, 56)!important;
+			}
+		}
+		.see-more {
+			font-size: 22px;
+		    margin: 0 auto;
+		    padding: 30px;
+		    font-weight: 400;
+		    .see-more-link{
+		    	font-weight: 300;
+		    }
+		}
+		.classics {
+			padding: 10px;
+			span {
+				a:not(.srclnk) {
+					display: inline-block;
+					padding: 5px 0 5px 0;
+				}
+			}
+			.srclnk {
+				padding: 0 10px 0 0;
+				color: rgba(176, 190, 197, 1);
+			}
+		}
+		.footer {
+			text-align: center;
+			padding: 10px;
+			margin: 0 auto;
+		}
+	}
+}
+@media (max-width: 479px){
+	.mdl-grid {
+	    padding: 0px!important;
+	}
+}
