@@ -25,23 +25,24 @@
 		     }
 		})
 	</script>
+	<base href="/gifsound/">
 </head>
 <body ng-controller="mainCtrl">
 	<section id="header">
 		<div class="intro">
-			<span class="title">GIF Sound</span>
-			<span class="subtitle">Animated GIFs &nbsp;+&nbsp; Sound from YouTube &nbsp;=&nbsp; Funny Mashups</span>
+			<span class="{{ngTitle}}">GIF Sound</span>
+			<span class="{{ngSubtitle}}">Animated GIFs &nbsp;+&nbsp; Sound from YouTube &nbsp;=&nbsp; Funny Mashups</span>
 		</div>
 	</section>
 	<section id="mashup">
-		
+		<div ng-view></div>
 	</section>
 	<section id="combiner">
 		<form ng-submit="combine()">
-			<div class="form">
-				GIF:<input placeholder="URL of an animated GIF." type="url" required id="gif" ng-model="gifModel">
-				Sound: <input placeholder="YouTube URL." type="url" required id="sound" ng-model="soundModel">
-				Start: <input placeholder="Seconds" type="text" required class="start-input" id="start" ng-model="timeModel">
+			<div class="form" ng-controller="mixCtrl">
+				GIF: <input placeholder="URL of an animated GIF." id="gif" value='{{gifModel}}'></input>
+				Sound: <input placeholder="YouTube URL."" id="sound" value='{{soundModel}}'></input>
+				Start: <input placeholder="Seconds" class="start-input" id="start"></input>
 				<button class="submit-button" type="submit">COMBINE!</button>
 			</div>
 		</form>

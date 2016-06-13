@@ -20,6 +20,15 @@ a, a:link, a:hover, a:active, a:focus, a:visited {
 			display: block;	
 			padding: 10px;
 		}
+		.title-active {
+			display: block;
+		    font-size: 30px;
+		    padding: 20px;
+		    text-align: left;
+		}
+		.subtitle-active{
+			display: none;	
+		}
 	}
 }
 #combiner {
