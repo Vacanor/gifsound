@@ -6,18 +6,18 @@ app.config(function($routeProvider, $locationProvider){
              controller: 'mainCtrl'
         })
      	.when('/mix',{
-        templateUrl: 'mix.html',
-        controller: 'mixCtrl',
+            templateUrl: 'mix.html',
+            controller: 'mixCtrl'
         })
         // I added this functionality so the page is going to return results when you put the string you wanna search as a parameter in the url
-         .when('/mix/:title/:title2',{
-        templateUrl: 'mix.html',
-        controller: 'mixCtrl'
+        .when('/mix/:title/:title2',{
+            templateUrl: 'mix.html',
+            controller: 'mixCtrl'
         })
         .otherwise({
             redirectTo: "/"
         });
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
 });
 
 app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$rootScope', function($scope, $sce, $location, $routeParams, $rootScope){
@@ -43,7 +43,8 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
     }
     checkParams();
 }]);
-app.controller('mixCtrl', ['$scope', '$sce', '$location', '$routeParams', '$rootScope', '$route', function($scope, $sce, $location, $routeParams, $rootScope, $route){
+app.controller('mixCtrl', ['$scope', '$sce', function($scope, $sce){
+
     $scope.src = $sce.trustAsResourceUrl('https://www.youtube-nocookie.com/embed/TbsBEb1ZxWA?rel=0&amp;showinfo=0&autoplay=1&start=20&loop=1');
     checkParams();
 }]);
