@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="gifsound">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8" />
 	<title>GifSound</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -25,7 +25,6 @@
 		     }
 		})
 	</script>
-	<!-- <base href="/gifsound/"> -->
 </head>
 <body ng-controller="mainCtrl">
 	<section id="header">
@@ -40,7 +39,7 @@
 		<div ng-view></div>
 	</section>
 	<section id="combiner">
-		<form ng-submit="combine()">
+		<form ng-submit="combine()" accept-charset="utf-8">
 			<div class="form" ng-controller="mixCtrl">
 				GIF: <input placeholder="URL of an animated GIF." id="gif" value='{{gifModel}}'></input>
 				Sound: <input placeholder="YouTube URL."" id="sound" value='{{soundModel}}'></input>
