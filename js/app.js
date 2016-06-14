@@ -9,7 +9,7 @@ app.config(function($routeProvider, $locationProvider){
             templateUrl: 'mix.html',
             controller: 'mixCtrl'
         })
-        // I added this functionality so the page is going to return results when you put the string you wanna search as a parameter in the url
+        // Adding this routing allows to save soundgifs
         .when('/mix/:title/:title2',{
             templateUrl: 'mix.html',
             controller: 'mixCtrl'
@@ -21,12 +21,14 @@ app.config(function($routeProvider, $locationProvider){
 });
 
 app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$rootScope', function($scope, $sce, $location, $routeParams, $rootScope){
+    // Combine the sound and the gif. Get the data, procces it and build the mix
 	$scope.combine = function(){
-		console.log(angular.element('#gif').val(), angular.element('#sound').val());
-        $rootScope.gifModel = angular.element('#gif').val();
-        $rootScope.soundModel = angular.element('#sound').val();
-        $location.path('/mix/'+$rootScope.gifModel+'/'+$rootScope.soundModel);
+		// console.log(angular.element('#gif').val(), angular.element('#sound').val());
+        $rootScope.gifModel = angular.element('#gif').val(); // Get the value of the inputs
+        $rootScope.soundModel = angular.element('#sound').val(); // Get the value of the inputs
+        $location.path('/mix/'+$rootScope.gifModel+'/'+$rootScope.soundModel); // Put parameters into the url
 	};
+    // To get the data from the url and change the header title and subtitle classes respectively
     checkParams = function(){            
             if($routeParams.title === undefined || $routeParams.title2 === undefined){
                 // console.log($routeParams.title, $routeParams.title2);
@@ -44,7 +46,6 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
     checkParams();
 }]);
 app.controller('mixCtrl', ['$scope', '$sce', function($scope, $sce){
-
     $scope.src = $sce.trustAsResourceUrl('https://www.youtube-nocookie.com/embed/TbsBEb1ZxWA?rel=0&amp;showinfo=0&autoplay=1&start=20&loop=1');
     checkParams();
 }]);

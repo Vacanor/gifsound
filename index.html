@@ -5,7 +5,7 @@
 	<title>GifSound</title>
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+	
 	<link rel="stylesheet" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic' rel='stylesheet' type='text/css'>
 	
@@ -30,11 +30,13 @@
 <body ng-controller="mainCtrl">
 	<section id="header">
 		<div class="intro">
+			<!-- The classes of title and subtitle will depend on wether there are parameters in the url or not -->
 			<span class="{{ngTitle}}">GIF Sound</span>
 			<span class="{{ngSubtitle}}">Animated GIFs &nbsp;+&nbsp; Sound from YouTube &nbsp;=&nbsp; Funny Mashups</span>
 		</div>
 	</section>
 	<section id="mashup">
+		<!-- This is where the magic shows up -->
 		<div ng-view></div>
 	</section>
 	<section id="combiner">
