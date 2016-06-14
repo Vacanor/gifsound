@@ -20,7 +20,7 @@ app.config(function($routeProvider, $locationProvider){
 });
 
 app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$rootScope', function($scope, $sce, $location, $routeParams, $rootScope){
-    // RegEx filter to check urls. From https://gist.github.com/dperini/729294
+    // RegEx filter to check valid urls. From https://gist.github.com/dperini/729294
     var reg_url = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
     // Combine the sound and the gif. Get the data, procces it and build the mix
 	$scope.combine = function(){
@@ -29,13 +29,13 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
         $rootScope.soundModel = angular.element('#sound').val().toString(); // Get the value of the inputs
         if($rootScope.gifModel || $rootScope.soundModel){
             filterUrl($rootScope.gifModel, $rootScope.soundModel);
+             $location.path('/mix/'+encodeURIComponent($rootScope.gifModel)+'/'+encodeURIComponent($rootScope.soundModel)); // Put parameters into the url
         }else {
             console.log("no params");
         }
-        // $location.path('/mix/'+$rootScope.gifModel+'/'+$rootScope.soundModel); // Put parameters into the url
+       
 	};
     filterUrl = function(gif, sound){
-        console.log(gif, sound);
         if((gif && gif.match(reg_url)) && (sound && sound.match(reg_url))){
             console.log("both", gif, sound);
         }else if (gif && gif.match(reg_url)){
@@ -50,20 +50,17 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
     // To get the data from the url and change the header title and subtitle classes respectively
     checkParams = function(){            
             if($routeParams.title !== undefined || $routeParams.title2 !== undefined){
-                // console.log($routeParams.title, $routeParams.title2);
-                // console.log($routeParams.title, $routeParams.title2);
-
                 filterUrl($routeParams.title, $routeParams.title2);
                 $scope.ngTitle = 'title-active';
                 $scope.ngSubtitle = 'subtitle-active';
-                $rootScope.gifModel = $routeParams.title;
-                $rootScope.soundModel = $routeParams.title2;
-
-
+                $rootScope.gifModel = decodeURIComponent($routeParams.title);
+                $rootScope.soundModel = decodeURIComponent($routeParams.title2);
             }
-            else {
+            else if($routeParams.title === undefined || $routeParams.title2 === undefined){
                 $scope.ngTitle = 'title';
                 $scope.ngSubtitle = 'subtitle';
+                $rootScope.gifModel = '';
+                $rootScope.soundModel = '';
             }
     }
 
