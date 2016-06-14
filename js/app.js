@@ -28,12 +28,11 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
 		console.log(angular.element('#gif').val().toString(), angular.element('#sound').val().toString());
         $rootScope.gifModel = angular.element('#gif').val().toString(); // Get the value of the inputs
         $rootScope.soundModel = angular.element('#sound').val().toString(); // Get the value of the inputs
-        if($rootScope.gifModel || $rootScope.soundModel){
-            filterUrl($rootScope.gifModel, $rootScope.soundModel);
+        if($rootScope.gifModel || $rootScope.soundModel){// If there is at least one parameter
+            filterUrl($rootScope.gifModel, $rootScope.soundModel); // Go chech if it is a valid url
         }else {
             console.log("no params");
         }
-       
 	};
     // This function checks that the parameter is indeed a valid url and takes action depending on result
     filterUrl = function(gif, sound){
@@ -66,9 +65,6 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
                 $rootScope.gifModel = '';
                 $rootScope.soundModel = '';
             }
-            if($routeParams.title){
-                console.log("present");
-            }
     }
     // We need to bring things back to the home state if we go back to the root path with no parameters
     backHome = function(){
@@ -81,7 +77,7 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
           }         
         });
     }
-    
+
     backHome();
     checkParams();
 

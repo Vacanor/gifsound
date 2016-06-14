@@ -124,5 +124,9 @@ a, a:link, a:hover, a:active, a:focus, a:visited {
 	}
 }
 #mashup {
-	
+	#gif-video {
+		min-height: 250px;
+	    max-height: 500px;
+	    max-width: 1000px;
+	}
 }
