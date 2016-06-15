@@ -29,31 +29,41 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
         $rootScope.gifModel = angular.element('#gif').val().toString(); // Get the value of the inputs
         $rootScope.soundModel = angular.element('#sound').val().toString(); // Get the value of the inputs
         if($rootScope.gifModel || $rootScope.soundModel){// If there is at least one parameter
-            filterUrl($rootScope.gifModel, $rootScope.soundModel); // Go chech if it is a valid url
+            filterUrl(decodeURIComponent($rootScope.gifModel), decodeURIComponent($rootScope.soundModel)); // Go chech if it is a valid url
         }else {
             console.log("no params");
         }
 	};
     // This function checks that the parameter is indeed a valid url and takes action depending on result
     filterUrl = function(gif, sound){
+        defineModels = function(gif, sound) {
+        
+        var idReg = /^.*(youtu.be\/|v\/|embed\/|watch\?|youtube.com\/user\/[^#]*#([^\/]*?\/)*)\??v?=?([^#\&\?]*).*/;
+        var video_id = sound.match(idReg)[3];
+        $rootScope.soundFinalUrl = 'https://www.youtube.com/embed/'+video_id+'?autoplay=1&loop=1&playlist=TbsBEb1ZxWA&showinfo=0&start=65';
+        console.log($rootScope.soundFinalUrl);
+        }
         if((gif && gif.match(reg_url)) && (sound && sound.match(reg_url))){
             console.log("both", gif, sound);
+            defineModels(gif, sound);
             $location.path('/mix/'+encodeURIComponent(gif)+'/'+encodeURIComponent(sound)); // Put parameters into the url
         }else if (gif && gif.match(reg_url)){
             console.log('just gif', gif);
+            defineModels(gif, " ");
             $location.path('/mix/'+encodeURIComponent(gif)+'/ '); // Put parameters into the url
         }else if(sound && sound.match(reg_url)){
             console.log('just sound', sound);
+            defineModels(" ", sound);
             $location.path('/mix/ /'+encodeURIComponent(sound)); // Put parameters into the url
         }else {
             console.log('Url Not valid');
         }
-            
+        
     }
     // To get the data from the url and change the header title and subtitle classes respectively
     checkParams = function(){            
             if($routeParams.title !== undefined || $routeParams.title2 !== undefined){
-                filterUrl($routeParams.title, $routeParams.title2);
+                filterUrl(decodeURIComponent($rootScope.gifModel), decodeURIComponent($rootScope.soundModel));
                 $scope.ngTitle = 'title-active';
                 $scope.ngSubtitle = 'subtitle-active';
                 $rootScope.gifModel = decodeURIComponent($routeParams.title);
@@ -77,13 +87,13 @@ app.controller('mainCtrl', ['$scope', '$sce', '$location', '$routeParams', '$roo
           }         
         });
     }
-
+    
     backHome();
     checkParams();
 
 }]);
 app.controller('mixCtrl', ['$scope', '$sce', function($scope, $sce){
-    $scope.src = $sce.trustAsResourceUrl('https://www.youtube-nocookie.com/embed/TbsBEb1ZxWA?rel=0&amp;showinfo=0&autoplay=1&start=20&loop=1');
+    //$scope.src = $sce.trustAsResourceUrl('https://www.youtube-nocookie.com/embed/TbsBEb1ZxWA?rel=0&amp;showinfo=0&autoplay=1&start=20&loop=1');
     checkParams();
     backHome();
 }]);
